@@ -14,6 +14,6 @@ https://github.com/spring-cloud/spring-cloud-gateway/issues/229
 and
 https://github.com/spring-cloud/spring-cloud-gateway/issues/314
 
-Currently discovery of routes only works on startup and if a new app is added then a POST to /application/gateway/refresh is necessary. It's not clear how to resolve this.
+Currently discovery of routes only works on startup and if a new app is added then a POST to /actuator/gateway/refresh is necessary. It's not clear how to resolve this.
 
 Discovery is also limited to the current namespace.
