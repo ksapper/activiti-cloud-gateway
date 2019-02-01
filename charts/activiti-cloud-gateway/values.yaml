@@ -4,7 +4,7 @@
 replicaCount: 1
 javaOpts:
   xmx: 512m
-  xms: 512m
+  xms: 1024m
   other: -XX:+UnlockExperimentalVMOptions  -Dsun.zip.disableMemoryMapping=true -XX:+UseParallelGC -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90
 image:
   repository: activiti/activiti-cloud-gateway
@@ -25,20 +25,22 @@ service:
       nginx.ingress.kubernetes.io/x-forwarded-prefix: true
 resources:
   limits:
-    memory: 768Mi
+    cpu: 1
+    memory: 1024Mi
   requests:
     cpu: 400m
     memory: 512Mi
 probePath: /actuator/health
 livenessProbe:
-  initialDelaySeconds: 40
-  periodSeconds: 10
-  successThreshold: 1
-  timeoutSeconds: 1
+  initialDelaySeconds: 140
+  periodSeconds: 15
+  timeoutSeconds: 20
+  failureThreshold: 20
 readinessProbe:
-  periodSeconds: 10
-  successThreshold: 1
-  timeoutSeconds: 1
+  initialDelaySeconds: 30
+  periodSeconds: 15
+  timeoutSeconds: 20
+  failureThreshold: 20
 terminationGracePeriodSeconds: 10
 
 ## Allows the specification of additional environment variables
