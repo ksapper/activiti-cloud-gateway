@@ -70,7 +70,7 @@ pipeline {
       }
       stage('Promote to Environments') {
         when {
-          branch '7.0.x'
+          branch 'master'
         }
         steps {
           container('maven') {
